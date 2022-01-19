@@ -1,0 +1,19 @@
+{
+  "contacts": [
+    {
+      "id": "b38e5fe9-4400-4d1a-be12-27b7f829d9f6",
+      "first_name": "Julien",
+      "last_name": "Achkar",
+      "city": "Beirut",
+      "groups": [
+        "12312312312312"
+      ],
+      "phone_numbers": [
+        {
+          "region": "05",
+          "number": "71568887"
+        }
+      ]
+    }
+  ]
+}
