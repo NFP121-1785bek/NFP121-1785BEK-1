@@ -16,4 +16,12 @@ public class PhoneNumber {
     public String getNumber() {
         return this.number;
     }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 }

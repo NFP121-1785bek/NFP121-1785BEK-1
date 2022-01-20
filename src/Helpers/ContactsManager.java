@@ -76,6 +76,10 @@ public class ContactsManager {
             Writer fileWriter = new FileWriter(Constants.ContactsFile, false);
             fileWriter.write(jsonInString);
             fileWriter.close();
+
+            for(int i = 0; i < groups.size(); i++) {
+                addContactInGroupModel(uniqueID, groups.get(i));
+            }
         } catch (Exception e){
             System.out.println(e.getLocalizedMessage());
         }
@@ -89,6 +93,102 @@ public class ContactsManager {
         try {
             ArrayList<Group> groups = getGroupsResponse().getGroups();
             groups.add(group);
+            
+            GetGroupsResponse getGroupsModel = new GetGroupsResponse();
+            getGroupsModel.setGroups(groups);
+
+            String jsonInString = gson.toJson(getGroupsModel);
+
+            Writer fileWriter = new FileWriter(Constants.GroupsFile, false);
+            fileWriter.write(jsonInString);
+            fileWriter.close();
+
+            for(int i = 0; i < contacts.size(); i++) {
+                addGroupInContactModel(contacts.get(i), uniqueID);
+            }
+        } catch (Exception e){
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
+
+    public void updateContact(Contact contact) {
+        try {
+            ArrayList<Contact> contacts = getContactsResponse().getContacts();
+
+            for(int i = 0; i < contacts.size(); i++) {
+                if(contacts.get(i).getID() == contact.getID()) {
+                    contacts.get(i).setFirstName(contact.getFirstName());
+                    contacts.get(i).setLastName(contact.getLastName());
+                    contacts.get(i).setCity(contact.getCity());
+                    contacts.get(i).setPhoneNumbers(contact.getPhoneNumbers());
+                    contacts.get(i).setGroups(contact.getGroups());
+                    
+                    for(int j = 0; j < contact.getGroups().size(); j++) {
+                        addContactInGroupModel(contact.getID(), contact.getGroups().get(j));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
+
+    public void updateGroup(Group group) {
+        try {
+            ArrayList<Group> groups = getGroupsResponse().getGroups();
+
+            for(int i = 0; i < groups.size(); i++) {
+                if(groups.get(i).getID() == group.getID()) {
+                    groups.get(i).setName(group.getName());
+                    groups.get(i).setDescription(group.getDescription());
+                    groups.get(i).setContacts(group.getContacts());
+
+                    for(int j = 0; j < group.getContacts().size(); j++) {
+                        addGroupInContactModel(group.getID(), group.getContacts().get(j));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
+
+    public void addGroupInContactModel(String contactID, String groupID) {
+        try {
+            ArrayList<Contact> contacts = getContactsResponse().getContacts();
+
+            for(int i = 0; i < contacts.size(); i++) {
+                contacts.get(i).removeGroup(groupID);
+
+                if(contacts.get(i).getID() == contactID) {
+                    contacts.get(i).addGroup(groupID);
+                }
+            }
+
+            GetContactsResponse getContactsModel = new GetContactsResponse();
+            getContactsModel.setContacts(contacts);
+
+            String jsonInString = gson.toJson(getContactsModel);
+
+            Writer fileWriter = new FileWriter(Constants.ContactsFile, false);
+            fileWriter.write(jsonInString);
+            fileWriter.close();
+        } catch (Exception e){
+            System.out.println(e.getLocalizedMessage());
+        }
+    }
+
+    public void addContactInGroupModel(String contactID, String groupID) {
+        try {
+            ArrayList<Group> groups = getGroupsResponse().getGroups();
+
+            for(int i = 0; i < groups.size(); i++) {
+                groups.get(i).removeContact(contactID);
+
+                if(groups.get(i).getID() == groupID) {
+                    groups.get(i).addContact(contactID);
+                }
+            }
 
             GetGroupsResponse getGroupsModel = new GetGroupsResponse();
             getGroupsModel.setGroups(groups);

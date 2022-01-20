@@ -23,11 +23,31 @@ public class Group {
         return this.name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
         return this.description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public ArrayList<String> getContacts() {
         return this.contacts;
+    }
+
+    public void setContacts(ArrayList<String> contacts) {
+        this.contacts = contacts;
+    }
+
+    public void addContact(String contactID) {
+        contacts.add(contactID);
+    }
+
+    public void removeContact(String contactID) {
+        contacts.remove(contactID);
     }
 }
