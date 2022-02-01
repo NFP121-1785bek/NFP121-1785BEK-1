@@ -3,15 +3,13 @@ package Views;
 import javax.swing.*;
 import java.awt.*;
 
-public class NewContactView extends JFrame {//JPanel {
+public class NewContactView extends JPanel {
     
     private JPanel mainPanel;
 
     public NewContactView() {
         mainPanel = new JPanel();
-        mainPanel.setSize(500, 500);
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.setBackground(Color.red);
 
         JPanel titlePanel = new JPanel();
         JLabel titleLabel = new JLabel();
@@ -88,11 +86,8 @@ public class NewContactView extends JFrame {//JPanel {
         buttonsPanel.add(updateButton);
 
         displayPanel.add(buttonsPanel, BorderLayout.SOUTH);
-        add(mainPanel);
 
-        setSize(500, 500);
-        setMinimumSize(new Dimension(500, 500));
-        setMaximumSize(new Dimension(500, 500));
-        setVisible(true);
+        setLayout(new BorderLayout());
+        add(mainPanel);
     }
 }

@@ -1,13 +1,9 @@
-import Views.*;
+import javax.swing.JFrame;
 
-// import Helpers.ContactsManager;
-// import Models.*;
-// import java.util.*;
+import Controllers.AppController;
 
-public class App {
-    public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
-
-        NewContactView ctcs = new NewContactView();
+public class App extends JFrame {
+    public static void main(String[] args) {
+        new AppController();
     }
 }

@@ -1,14 +1,17 @@
 package Views;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.*;
 
-public class ContactsView extends JFrame {
-    private JPanel mainPanel;
+public class ContactsView extends JPanel {
+    private DefaultTableModel tableModel;
+    private JTable contactsTable;
+    private JButton viewButton, updateButton, deleteButton, sortFNameButton, sortLNameButton, sortCityButton, addNewButton;
 
     public ContactsView() {
-        mainPanel = new JPanel();
-        mainPanel.setSize(500, 500);
+        JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.setBackground(Color.red);
 
@@ -33,19 +36,19 @@ public class ContactsView extends JFrame {
         contactsLabel.setFont(new Font("Courier", Font.BOLD,20)); 
         menuPanel.add(contactsLabel);
 
-        JButton sortFNameButton = new JButton();
+        sortFNameButton = new JButton();
         sortFNameButton.setText("Sort by first name");
         menuPanel.add(sortFNameButton);
 
-        JButton sortLNameButton = new JButton();
+        sortLNameButton = new JButton();
         sortLNameButton.setText("Sort by last name");
         menuPanel.add(sortLNameButton);
 
-        JButton sortCityButton = new JButton();
+        sortCityButton = new JButton();
         sortCityButton.setText("Sort by City");
         menuPanel.add(sortCityButton);
 
-        JButton addNewButton = new JButton();
+        addNewButton = new JButton();
         addNewButton.setText("Add new contact");
         menuPanel.add(addNewButton);
 
@@ -69,29 +72,50 @@ public class ContactsView extends JFrame {
         searchPanel.add(searchTextField);
         displayPanel.add(searchPanel, BorderLayout.NORTH);
 
-        JTable contactsTable = new JTable();
-        displayPanel.add(contactsTable, BorderLayout.CENTER);
+        tableModel = new DefaultTableModel(0, 1) {
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+        };
 
+        contactsTable = new JTable(tableModel);
+        displayPanel.add(contactsTable, BorderLayout.CENTER);
+        
         JPanel buttonsPanel = new JPanel();
-        JButton viewButton = new JButton();
+        viewButton = new JButton();
         viewButton.setText("View");
         buttonsPanel.add(viewButton);
 
-        JButton updateButton = new JButton();
+        updateButton = new JButton();
         updateButton.setText("Update");
         buttonsPanel.add(updateButton);
 
-        JButton deleteButton = new JButton();
+        deleteButton = new JButton();
         deleteButton.setText("Delete");
         buttonsPanel.add(deleteButton);
 
         displayPanel.add(buttonsPanel, BorderLayout.SOUTH);
+        
+        setLayout(new BorderLayout());
         add(mainPanel);
+    }
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(500, 500);
-        setMinimumSize(new Dimension(500, 500));
-        setMaximumSize(new Dimension(500, 500));
-        setVisible(true);
+    public void addRowToTable(Object[] row) {
+        tableModel.addRow(row);
+    }
+
+    public int getSelectedRow() {
+        return contactsTable.getSelectedRow();
+    }
+
+    public void addButtonsActionListeners(ActionListener listener) {
+        viewButton.addActionListener(listener);
+        updateButton.addActionListener(listener);
+        deleteButton.addActionListener(listener);
+        sortFNameButton.addActionListener(listener);
+        sortLNameButton.addActionListener(listener);
+        sortCityButton.addActionListener(listener);
+        addNewButton.addActionListener(listener);
     }
 }
+
