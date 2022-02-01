@@ -21,7 +21,7 @@ public class AppController {
             ArrayList<Contact> contacts = ContactsManager.sharedInstance().getContactsResponse().getContacts();
             ContactsView ctcsView = new ContactsView();
 
-            appFrame.getContentPane().add(ctcsView);
+            appFrame.getContentPane().add(ctcsView.mainPanel);
 
             ContactsController contactsController = new ContactsController(appFrame, ctcsView, contacts);
             contactsController.updateView();

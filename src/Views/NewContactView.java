@@ -1,11 +1,19 @@
 package Views;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.*;
 import java.awt.*;
+import java.util.ArrayList;
+
+import Helpers.*;
 
 public class NewContactView extends JPanel {
     
     private JPanel mainPanel;
+    private DefaultTableModel tableModel;
+    private CheckBoxList cbList;
+    private JButton saveButton, cancelButton;
 
     public NewContactView() {
         mainPanel = new JPanel();
@@ -41,29 +49,27 @@ public class NewContactView extends JPanel {
 
         JPanel displayPanel = new JPanel();
         displayPanel.setLayout(new BorderLayout());
-        mainPanel.add(displayPanel, BorderLayout.LINE_END);
-
         JPanel textPanel = new JPanel();
         textPanel.setLayout(new GridLayout(3, 1));
 
         JPanel namePanel = new JPanel();
         JLabel nameLabel = new JLabel();
         nameLabel.setText("First name");
-        JTextField nameTextField = new JTextField(10);
+        JTextField nameTextField = new JTextField(15);
         namePanel.add(nameLabel);
         namePanel.add(nameTextField);
 
         JPanel lnamePanel = new JPanel();
         JLabel lnameLabel = new JLabel();
         lnameLabel.setText("Last name");
-        JTextField lnameTextField = new JTextField(10);
+        JTextField lnameTextField = new JTextField(15);
         lnamePanel.add(lnameLabel);
         lnamePanel.add(lnameTextField);
 
         JPanel cityPanel = new JPanel();
         JLabel cityLabel = new JLabel();
         cityLabel.setText("City");
-        JTextField cityTextField = new JTextField(10);
+        JTextField cityTextField = new JTextField(20);
         cityPanel.add(cityLabel);
         cityPanel.add(cityTextField);
 
@@ -73,21 +79,71 @@ public class NewContactView extends JPanel {
 
         displayPanel.add(textPanel, BorderLayout.NORTH);
 
-        JTable contactsTable = new JTable();
-        displayPanel.add(contactsTable, BorderLayout.CENTER);
+        JPanel centerPanel = new JPanel();
+        centerPanel.setLayout(new BorderLayout());
+
+        JPanel contactsTablePanel = new JPanel();
+        contactsTablePanel.setLayout(new BorderLayout());
+
+        JLabel phoneNbLbl = new JLabel();
+        phoneNbLbl.setText("Phone Numbers");
+        phoneNbLbl.setHorizontalAlignment(JLabel.CENTER);
+        contactsTablePanel.add(phoneNbLbl, BorderLayout.NORTH);
+
+        tableModel = new DefaultTableModel(6, 2);
+        String head[] = {"Region code", "Phone number"};       
+        tableModel.setColumnIdentifiers(head);
+
+        JTable phoneNbTable = new JTable(tableModel);
+        phoneNbTable.setShowGrid(true);
+        phoneNbTable.setGridColor(Color.black);
+        contactsTablePanel.add(phoneNbTable, BorderLayout.CENTER);
+
+        centerPanel.add(contactsTablePanel, BorderLayout.NORTH);
+
+        JPanel checkBoxListPanel = new JPanel();
+        checkBoxListPanel.setLayout(new BorderLayout());
+        JLabel addToGroupsLbl = new JLabel();
+        addToGroupsLbl.setText("Add contact to Groups");
+        addToGroupsLbl.setHorizontalAlignment(JLabel.CENTER);
+        checkBoxListPanel.add(addToGroupsLbl, BorderLayout.NORTH);
+
+        cbList = new CheckBoxList();
+        checkBoxListPanel.add(cbList, BorderLayout.CENTER);
+
+        centerPanel.add(checkBoxListPanel, BorderLayout.CENTER);
+
+        displayPanel.add(centerPanel, BorderLayout.CENTER);
+        mainPanel.add(displayPanel, BorderLayout.LINE_END);
 
         JPanel buttonsPanel = new JPanel();
-        JButton viewButton = new JButton();
-        viewButton.setText("Save");
-        buttonsPanel.add(viewButton);
+        saveButton = new JButton();
+        saveButton.setText("Save");
+        buttonsPanel.add(saveButton);
 
-        JButton updateButton = new JButton();
-        updateButton.setText("Cancel");
-        buttonsPanel.add(updateButton);
+        cancelButton = new JButton();
+        cancelButton.setText("Cancel");
+        buttonsPanel.add(cancelButton);
 
         displayPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
         setLayout(new BorderLayout());
         add(mainPanel);
+    }
+
+    public void addCheckBoxToTable(ArrayList<String> groupNames) {
+        JCheckBox[] checkBoxArr = new JCheckBox[groupNames.size()];
+
+        for(int i = 0; i < groupNames.size(); i++) {
+            JCheckBox checkBox = new JCheckBox(groupNames.get(i));
+            checkBoxArr[i] = checkBox;
+        }
+
+        cbList.setListData(checkBoxArr);
+    }
+    
+    public void addButtonsActionListeners(ActionListener listener) {
+        saveButton.addActionListener(listener);
+        cancelButton.addActionListener(listener);
     }
 }
