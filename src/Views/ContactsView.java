@@ -5,8 +5,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 
-public class ContactsView {
-    public JPanel mainPanel;
+public class ContactsView extends JPanel {
+    private JPanel mainPanel;
     private DefaultTableModel tableModel;
     private JTable contactsTable;
     private JButton viewButton, updateButton, deleteButton, sortFNameButton, sortLNameButton, sortCityButton, addNewButton;
@@ -97,8 +97,8 @@ public class ContactsView {
 
         displayPanel.add(buttonsPanel, BorderLayout.SOUTH);
         
-        // setLayout(new BorderLayout());
-        // add(mainPanel);
+        setLayout(new BorderLayout());
+        add(mainPanel);
     }
 
     public void addRowToTable(Object[] row) {

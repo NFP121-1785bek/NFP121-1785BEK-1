@@ -1,12 +1,6 @@
 package Controllers;
 
-import java.util.*;
-import javax.swing.*;
-import java.awt.*;
-
 import Views.*;
-import Models.*;
-import Helpers.*;
 
 public class AppController {
 
@@ -17,17 +11,12 @@ public class AppController {
     }
 
     public void loadContacts() {
-        try {
-            ArrayList<Contact> contacts = ContactsManager.sharedInstance().getContactsResponse().getContacts();
-            ContactsView ctcsView = new ContactsView();
+        ContactsView ctcsView = new ContactsView();
 
-            appFrame.getContentPane().add(ctcsView.mainPanel);
+        appFrame.getContentPane().add(ctcsView);
 
-            ContactsController contactsController = new ContactsController(appFrame, ctcsView, contacts);
-            contactsController.updateView();
-            appFrame.setVisible(true);
-        } catch (Exception e) {
-            System.out.print(e.getLocalizedMessage());
-        }
+        ContactsController contactsController = new ContactsController(appFrame, ctcsView);
+        contactsController.updateView();
+        appFrame.setVisible(true);
     }
 }

@@ -5,13 +5,24 @@
       "first_name": "Julien",
       "last_name": "Achkar",
       "city": "Beirut",
-      "groups": [
-        "12312312312312"
-      ],
+      "groups": [],
       "phone_numbers": [
         {
-          "region": "05",
+          "region": "99905",
           "number": "71568887"
+        }
+      ]
+    },
+    {
+      "id": "77221171-bdb8-4150-bc17-0f54dabe600a",
+      "first_name": "Test",
+      "last_name": "New",
+      "city": "Beirut",
+      "groups": [],
+      "phone_numbers": [
+        {
+          "region": "961",
+          "number": "70003635"
         }
       ]
     }

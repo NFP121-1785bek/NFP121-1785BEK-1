@@ -1,8 +1,10 @@
 {
-    "groups": [{
-        "id": "AC45C579-48D3-4536-805B-428D21D3839B",
-        "name": "My Group",
-		"description": "Group Description",
-		"contacts":["AC45C579-48D3-4536-805B-428D21D3839B"]
-    }]
+  "groups": [
+    {
+      "id": "AC45C579-48D3-4536-805B-428D21D3839B",
+      "name": "My Group",
+      "description": "Group Description",
+      "contacts": []
+    }
+  ]
 }

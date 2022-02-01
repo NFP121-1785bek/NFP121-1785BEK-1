@@ -7,8 +7,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import Helpers.*;
+import Models.PhoneNumber;
 
-public class NewContactView extends JPanel {
+public class UpdateContactView extends JPanel {
     
     private JPanel mainPanel;
     public DefaultTableModel tableModel;
@@ -16,7 +17,7 @@ public class NewContactView extends JPanel {
     private JButton saveButton, cancelButton;
     public JTextField nameTextField, lnameTextField, cityTextField;
 
-    public NewContactView() {
+    public UpdateContactView() {
         mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
 
@@ -35,7 +36,7 @@ public class NewContactView extends JPanel {
         menuPanel.setLayout(new GridLayout(5, 0));
 
         JLabel newContactLabel = new JLabel();
-        newContactLabel.setText("New Contact");
+        newContactLabel.setText("Update Contact");
         newContactLabel.setForeground(Color.red);
         newContactLabel.setHorizontalAlignment(JLabel.LEFT);
         newContactLabel.setFont(new Font("Courier", Font.BOLD,20)); 
@@ -135,12 +136,31 @@ public class NewContactView extends JPanel {
         add(mainPanel);
     }
 
-    public void addCheckBoxToTable(ArrayList<String> groupNames) {
+    public void setupView(String fname, String lname, String city, ArrayList<String> groupNames, ArrayList<PhoneNumber> phoneNumbers) {
+        this.nameTextField.setText(fname);
+        this.lnameTextField.setText(lname);
+        this.cityTextField.setText(city);
+
+        for (int i = 0; i < phoneNumbers.size(); i++) {
+            tableModel.setValueAt(phoneNumbers.get(i).getRegion(), i, 0);
+            tableModel.setValueAt(phoneNumbers.get(i).getNumber(), i, 1);
+        }
+    }
+
+    public void addCheckBoxToTable(ArrayList<String> groupNames, ArrayList<String> groupId, ArrayList<String> selectedGroups) {
         JCheckBox[] checkBoxArr = new JCheckBox[groupNames.size()];
         
         for(int i = 0; i < groupNames.size(); i++) {
             JCheckBox checkBox = new JCheckBox(groupNames.get(i));
+            checkBox.setSelected(false);
             checkBoxArr[i] = checkBox;
+
+            for(int j = 0; j < selectedGroups.size(); j++) {
+                if (groupId.get(i).equals(selectedGroups.get(j))) {
+                    checkBox.setSelected(true);
+                    checkBoxArr[i] = checkBox;
+                }
+            }
         }
 
         cbList.setListData(checkBoxArr);

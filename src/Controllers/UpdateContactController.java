@@ -10,30 +10,35 @@ import java.awt.event.*;
 import Models.Contact;
 import Views.*;
 
-public class NewContactController implements ActionListener {
+public class UpdateContactController implements ActionListener {
 
-    NewContactView newContactView;
+    UpdateContactView updateContactView;
     private AppFrame appFrame;
     private ArrayList<Group> groups;
+    private Contact contact;
 
-    public NewContactController(AppFrame appFrame, NewContactView newContactView) {
+    public UpdateContactController(AppFrame appFrame, UpdateContactView updateContactView, Contact contact) {
+        this.contact = contact;
         this.appFrame = appFrame;
-        this.newContactView = newContactView;
+        this.updateContactView = updateContactView;
 
         try {
             this.groups = ContactsManager.sharedInstance().getGroupsResponse().getGroups();
             ArrayList<String> groupNames = new ArrayList<String>();
+            ArrayList<String> groupId = new ArrayList<>();
 
             for (Group group : groups) {
+                groupId.add(group.getID());
                 groupNames.add(group.getName());
             }
 
-            newContactView.addCheckBoxToTable(groupNames);
+            updateContactView.addCheckBoxToTable(groupNames, groupId, this.contact.getGroups());
         } catch (Exception e) {
             System.out.print(e.getLocalizedMessage());
         }
 
-        newContactView.addButtonsActionListeners(this);
+        updateContactView.setupView(contact.getFirstName(), contact.getLastName(), contact.getCity(), contact.getGroups(), contact.getPhoneNumbers());
+        updateContactView.addButtonsActionListeners(this);
     }
 
     public void actionPerformed(ActionEvent event) {
@@ -41,15 +46,15 @@ public class NewContactController implements ActionListener {
         if (source instanceof JButton) {
             JButton button = (JButton) source;
             if (button.getText() == "Save") {
-                String name = newContactView.nameTextField.getText();
-                String lname = newContactView.lnameTextField.getText();
-                String city = newContactView.cityTextField.getText();
+                String name = updateContactView.nameTextField.getText();
+                String lname = updateContactView.lnameTextField.getText();
+                String city = updateContactView.cityTextField.getText();
                 ArrayList<PhoneNumber> phoneNumbers = new ArrayList<>();
                 ArrayList<String> selectedGroups = new ArrayList<>();
 
-                for (int i = 0; i < newContactView.tableModel.getRowCount(); i++) {
-                    String region = (String)newContactView.tableModel.getValueAt(i, 0);
-                    String number = (String)newContactView.tableModel.getValueAt(i, 1);
+                for (int i = 0; i < updateContactView.tableModel.getRowCount(); i++) {
+                    String region = (String)updateContactView.tableModel.getValueAt(i, 0);
+                    String number = (String)updateContactView.tableModel.getValueAt(i, 1);
 
                     if (region != null || number != null) {
                         phoneNumbers.add(new PhoneNumber(region, number));
@@ -57,14 +62,15 @@ public class NewContactController implements ActionListener {
                 }
 
                 for (int i = 0; i < groups.size(); i++) {
-                    JCheckBox checkBox = (JCheckBox)newContactView.cbList.getModel().getElementAt(i);
-                    System.out.print(checkBox);
+                    JCheckBox checkBox = (JCheckBox)updateContactView.cbList.getModel().getElementAt(i);
+                    
                     if (checkBox.isSelected()) {
                         selectedGroups.add(groups.get(i).getID());
                     };
-                }
 
-                ContactsManager.sharedInstance().insertContact(name, lname, city, phoneNumbers, selectedGroups);
+                }
+                Contact contact = new Contact(this.contact.getID(), name, lname, city, selectedGroups, phoneNumbers);
+                ContactsManager.sharedInstance().updateContact(contact);
                 showContacts();
             } else if (button.getText() == "Cancel") {
                 showContacts();
