@@ -1,45 +1,18 @@
 {
   "contacts": [
     {
-      "id": "b38e5fe9-4400-4d1a-be12-27b7f829d9f6",
+      "id": "07d87211-0f88-43f5-8635-7fc77963b066",
       "first_name": "Julien",
-      "last_name": "Achkar",
-      "city": "Beirut",
-      "groups": [],
-      "phone_numbers": [
-        {
-          "region": "99905",
-          "number": "71568887"
-        }
-      ]
-    },
-    {
-      "id": "77221171-bdb8-4150-bc17-0f54dabe600a",
-      "first_name": "Test",
-      "last_name": "New",
+      "last_name": "Test",
       "city": "Beirut",
       "groups": [],
       "phone_numbers": [
         {
           "region": "961",
-          "number": "70003635"
-        }
-      ]
-    },
-    {
-      "id": "f8dbcdac-05e2-427e-a0a1-6570ca51d35a",
-      "first_name": "Julien",
-      "last_name": "Test Achkar",
-      "city": "Broummana",
-      "groups": [
-        "AC45C579-48D3-4536-805B-428D21D3839B",
-        "672d9f01-160b-4856-b6cb-0d2178ff911a",
-        "5da71a8a-2c87-4f99-9659-1a03c6714c4a"
-      ],
-      "phone_numbers": [
-        {
-          "region": "961",
           "number": "71568887"
+        },
+        {
+          "number": ""
         }
       ]
     }

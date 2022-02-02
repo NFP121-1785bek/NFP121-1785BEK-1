@@ -1,43 +1,10 @@
 {
   "groups": [
     {
-      "id": "AC45C579-48D3-4536-805B-428D21D3839B",
-      "name": "My Group",
-      "description": "Group Description",
-      "contacts": [
-        "f8dbcdac-05e2-427e-a0a1-6570ca51d35a"
-      ]
-    },
-    {
-      "id": "bc49667d-9dfa-4b11-a889-86726bc35e5e",
-      "name": "Test Group",
-      "description": "Test Desc",
+      "id": "9a50e2da-85d9-4dd5-9f4b-dfe19fda91ff",
+      "name": "asdasdas",
+      "description": "adasdasd",
       "contacts": []
-    },
-    {
-      "id": "d6a5bb74-2f3a-4b96-827f-88587f76b669",
-      "name": "Test New",
-      "description": "Test Desc",
-      "contacts": []
-    },
-    {
-      "id": "672d9f01-160b-4856-b6cb-0d2178ff911a",
-      "name": "Test 2nd Group",
-      "description": "Group Desc",
-      "contacts": [
-        "b38e5fe9-4400-4d1a-be12-27b7f829d9f6",
-        "f8dbcdac-05e2-427e-a0a1-6570ca51d35a"
-      ]
-    },
-    {
-      "id": "5da71a8a-2c87-4f99-9659-1a03c6714c4a",
-      "name": "New Group Julien",
-      "description": "My New Group",
-      "contacts": [
-        "b38e5fe9-4400-4d1a-be12-27b7f829d9f6",
-        "77221171-bdb8-4150-bc17-0f54dabe600a",
-        "f8dbcdac-05e2-427e-a0a1-6570ca51d35a"
-      ]
     }
   ]
 }

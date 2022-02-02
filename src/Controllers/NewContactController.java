@@ -55,11 +55,13 @@ public class NewContactController implements ActionListener {
                     }
                 }
 
-                for (int i = 0; i < groups.size(); i++) {
-                    JCheckBox checkBox = (JCheckBox)newContactView.cbList.getModel().getElementAt(i);
-                    if (checkBox.isSelected()) {
-                        selectedGroups.add(groups.get(i).getID());
-                    };
+                if (this.groups != null) {
+                    for (int i = 0; i < groups.size(); i++) {
+                        JCheckBox checkBox = (JCheckBox)newContactView.cbList.getModel().getElementAt(i);
+                        if (checkBox.isSelected()) {
+                            selectedGroups.add(groups.get(i).getID());
+                        };
+                    }
                 }
 
                 ContactsManager.sharedInstance().insertContact(name, lname, city, phoneNumbers, selectedGroups);

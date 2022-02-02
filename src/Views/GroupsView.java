@@ -14,7 +14,7 @@ public class GroupsView extends JPanel {
     private JPanel mainPanel;
     public DefaultTableModel tableModel, contactTableModel;
     private JTable groupsTable, contactsTable;
-    private JButton addButton;
+    private JButton addButton, backButton, deleteButton, updateButton;
 
     public GroupsView() {
         mainPanel = new JPanel();
@@ -46,6 +46,10 @@ public class GroupsView extends JPanel {
         addButton = new JButton();
         addButton.setText("Add new Group");
         menuPanel.add(addButton);
+
+        backButton = new JButton();
+        backButton.setText("Back");
+        menuPanel.add(backButton);
 
         leftanel.add(menuPanel);
         mainPanel.add(leftanel, BorderLayout.LINE_START);
@@ -92,13 +96,13 @@ public class GroupsView extends JPanel {
         displayPanel.add(tablesPanel, BorderLayout.CENTER);
 
         JPanel buttonsPanel = new JPanel();
-        JButton viewButton = new JButton();
-        viewButton.setText("Update Group");
-        buttonsPanel.add(viewButton);
-
-        JButton updateButton = new JButton();
-        updateButton.setText("Delete");
+        updateButton = new JButton();
+        updateButton.setText("Update Group");
         buttonsPanel.add(updateButton);
+
+        deleteButton = new JButton();
+        deleteButton.setText("Delete");
+        buttonsPanel.add(deleteButton);
 
         displayPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
@@ -131,6 +135,9 @@ public class GroupsView extends JPanel {
 
     public void addButtonsActionListeners(ActionListener listener) {
         addButton.addActionListener(listener);
+        backButton.addActionListener(listener);
+        deleteButton.addActionListener(listener);
+        updateButton.addActionListener(listener);
     }
 
     public void addListSelectionListener(ListSelectionListener listener) {

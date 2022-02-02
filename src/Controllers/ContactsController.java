@@ -32,6 +32,8 @@ public class ContactsController implements ActionListener {
     }
 
     public void updateView() {
+        if (this.contacts == null) { return; }
+
         for (Contact contactModel : contacts) {
             Object[] row = {contactModel.getFirstName() + " " + contactModel.getLastName() + " - " + contactModel.getCity()};
             contactsView.addRowToTable(row);
