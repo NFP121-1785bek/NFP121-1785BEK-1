@@ -1,11 +1,18 @@
 package Views;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.*;
+
 import java.awt.*;
+import java.util.ArrayList;
+import Models.*;
 
 public class GroupsView extends JPanel {
     
     private JPanel mainPanel;
+    public DefaultTableModel tableModel, contactTableModel;
+    private JTable groupsTable, contactsTable;
 
     public GroupsView() {
         mainPanel = new JPanel();
@@ -54,14 +61,32 @@ public class GroupsView extends JPanel {
         listLabel.setHorizontalAlignment(JLabel.CENTER);
 
         displayPanel.add(listLabel, BorderLayout.NORTH);
-
+        
         JPanel tablesPanel = new JPanel();
+        tablesPanel.setPreferredSize(new Dimension(50, 50));
         tablesPanel.setLayout(new GridLayout(2, 0));
-        JTable groupsTable = new JTable();
-        JTable contactsTable = new JTable();
-        contactsTable.setBackground(Color.blue);
-        tablesPanel.add(groupsTable);
-        tablesPanel.add(contactsTable);
+
+        tableModel = new DefaultTableModel(6, 2);
+        String head[] = {"Group Name", "Nb of contacts"};       
+        tableModel.setColumnIdentifiers(head);
+
+        groupsTable = new JTable(tableModel);
+        groupsTable.setShowGrid(true);
+        groupsTable.setGridColor(Color.black);
+
+        JScrollPane scrollPane = new JScrollPane(groupsTable);
+        tablesPanel.add(scrollPane);
+
+        contactTableModel = new DefaultTableModel(6, 2);
+        String contacthead[] = {"Contact Name", "Contact City"};       
+        contactTableModel.setColumnIdentifiers(contacthead);
+
+        contactsTable = new JTable(contactTableModel);
+        contactsTable.setShowGrid(true);
+        contactsTable.setGridColor(Color.black);
+        JScrollPane contactScrollPane = new JScrollPane(contactsTable);
+        tablesPanel.add(contactScrollPane);
+
         displayPanel.add(tablesPanel, BorderLayout.CENTER);
 
         JPanel buttonsPanel = new JPanel();
@@ -74,11 +99,33 @@ public class GroupsView extends JPanel {
         buttonsPanel.add(updateButton);
 
         displayPanel.add(buttonsPanel, BorderLayout.SOUTH);
-        add(mainPanel);
 
-        setSize(500, 500);
-        setMinimumSize(new Dimension(500, 500));
-        setMaximumSize(new Dimension(500, 500));
-        setVisible(true);
+        setLayout(new BorderLayout());
+        add(mainPanel);
+    }
+
+    public void addRowsToGroupsTable(ArrayList<Group> groups) {
+        for (int i = 0; i < groups.size(); i++) {
+            tableModel.setValueAt(groups.get(i).getName(), i, 0);
+            tableModel.setValueAt(groups.get(i).getContacts().size(), i, 1);
+        }
+    }
+
+    public void addRowsToContactsTable(ArrayList<Contact> contacts) {
+        for (int i = 0; i < contacts.size(); i++) {
+            contactTableModel.setValueAt(contacts.get(i).getFirstName() + " " + contacts.get(i).getLastName(), i, 0);
+            contactTableModel.setValueAt(contacts.get(i).getCity(), i, 1);
+        }
+    }
+
+    public int getSelectedRow() {
+        return groupsTable.getSelectedRow();
+    }
+
+    // public void addButtonsActionListeners(ActionListener listener) {
+    // }
+
+    public void addListSelectionListener(ListSelectionListener listener) {
+        groupsTable.getSelectionModel().addListSelectionListener(listener);
     }
 }

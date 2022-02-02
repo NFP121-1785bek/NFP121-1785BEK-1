@@ -9,7 +9,7 @@ public class ContactsView extends JPanel {
     private JPanel mainPanel;
     private DefaultTableModel tableModel;
     private JTable contactsTable;
-    private JButton viewButton, updateButton, deleteButton, sortFNameButton, sortLNameButton, sortCityButton, addNewButton;
+    private JButton viewButton, updateButton, deleteButton, sortFNameButton, sortLNameButton, sortCityButton, addNewButton, groupsButton;
 
     public ContactsView() {
         mainPanel = new JPanel();
@@ -28,7 +28,7 @@ public class ContactsView extends JPanel {
         JPanel leftanel = new JPanel();
 
         JPanel menuPanel = new JPanel();
-        menuPanel.setLayout(new GridLayout(5, 0));
+        menuPanel.setLayout(new GridLayout(6, 0));
 
         JLabel contactsLabel = new JLabel();
         contactsLabel.setText("Contacts");
@@ -52,6 +52,10 @@ public class ContactsView extends JPanel {
         addNewButton = new JButton();
         addNewButton.setText("Add new contact");
         menuPanel.add(addNewButton);
+
+        groupsButton = new JButton();
+        groupsButton.setText("Show groups");
+        menuPanel.add(groupsButton);
 
         leftanel.add(menuPanel);
         mainPanel.add(leftanel, BorderLayout.LINE_START);
@@ -117,6 +121,7 @@ public class ContactsView extends JPanel {
         sortLNameButton.addActionListener(listener);
         sortCityButton.addActionListener(listener);
         addNewButton.addActionListener(listener);
+        groupsButton.addActionListener(listener);
     }
 }
 

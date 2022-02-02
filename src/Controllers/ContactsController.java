@@ -89,6 +89,14 @@ public class ContactsController implements ActionListener {
 
                 appFrame.getContentPane().add(newContactView);
                 appFrame.setVisible(true);
+            } else if (button.getText() == "Show groups") {
+                appFrame.getContentPane().removeAll();
+
+                GroupsView groupsView = new GroupsView();
+                new GroupsController(appFrame, groupsView);
+
+                appFrame.getContentPane().add(groupsView);
+                appFrame.setVisible(true);
             }
         }
     }

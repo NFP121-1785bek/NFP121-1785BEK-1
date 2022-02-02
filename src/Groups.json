@@ -4,7 +4,9 @@
       "id": "AC45C579-48D3-4536-805B-428D21D3839B",
       "name": "My Group",
       "description": "Group Description",
-      "contacts": []
+      "contacts": [
+        "f8dbcdac-05e2-427e-a0a1-6570ca51d35a"
+      ]
     }
   ]
 }

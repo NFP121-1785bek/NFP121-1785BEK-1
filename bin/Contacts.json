@@ -25,6 +25,21 @@
           "number": "70003635"
         }
       ]
+    },
+    {
+      "id": "f8dbcdac-05e2-427e-a0a1-6570ca51d35a",
+      "first_name": "Julien",
+      "last_name": "Test Achkar",
+      "city": "Broummana",
+      "groups": [
+        "AC45C579-48D3-4536-805B-428D21D3839B"
+      ],
+      "phone_numbers": [
+        {
+          "region": "961",
+          "number": "71568887"
+        }
+      ]
     }
   ]
 }

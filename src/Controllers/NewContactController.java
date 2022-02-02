@@ -7,7 +7,6 @@ import javax.swing.JCheckBox;
 import Helpers.ContactsManager;
 import Models.*;
 import java.awt.event.*;
-import Models.Contact;
 import Views.*;
 
 public class NewContactController implements ActionListener {
@@ -58,7 +57,6 @@ public class NewContactController implements ActionListener {
 
                 for (int i = 0; i < groups.size(); i++) {
                     JCheckBox checkBox = (JCheckBox)newContactView.cbList.getModel().getElementAt(i);
-                    System.out.print(checkBox);
                     if (checkBox.isSelected()) {
                         selectedGroups.add(groups.get(i).getID());
                     };

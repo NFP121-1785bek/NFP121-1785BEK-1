@@ -114,7 +114,6 @@ public class ContactsManager {
             ArrayList<Contact> contacts = getContactsResponse().getContacts();
 
             for(int i = 0; i < contacts.size(); i++) {
-                System.out.println(contacts.get(i).getID().equals(contact.getID()));
                 if(contacts.get(i).getID().equals(contact.getID())) {
                     contacts.get(i).setFirstName(contact.getFirstName());
                     contacts.get(i).setLastName(contact.getLastName());
