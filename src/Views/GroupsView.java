@@ -3,6 +3,7 @@ package Views;
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
+import java.awt.event.*;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class GroupsView extends JPanel {
     private JPanel mainPanel;
     public DefaultTableModel tableModel, contactTableModel;
     private JTable groupsTable, contactsTable;
+    private JButton addButton;
 
     public GroupsView() {
         mainPanel = new JPanel();
@@ -41,7 +43,7 @@ public class GroupsView extends JPanel {
         groupsLabel.setFont(new Font("Courier", Font.BOLD,20)); 
         menuPanel.add(groupsLabel);
 
-        JButton addButton = new JButton();
+        addButton = new JButton();
         addButton.setText("Add new Group");
         menuPanel.add(addButton);
 
@@ -112,9 +114,14 @@ public class GroupsView extends JPanel {
     }
 
     public void addRowsToContactsTable(ArrayList<Contact> contacts) {
-        for (int i = 0; i < contacts.size(); i++) {
-            contactTableModel.setValueAt(contacts.get(i).getFirstName() + " " + contacts.get(i).getLastName(), i, 0);
-            contactTableModel.setValueAt(contacts.get(i).getCity(), i, 1);
+        for (int j = 0; j < contactTableModel.getRowCount(); j++) {
+            for (int i = 0; i < contacts.size(); i++) {
+                contactTableModel.setValueAt(contacts.get(i).getFirstName() + " " + contacts.get(i).getLastName(), i, 0);
+                contactTableModel.setValueAt(contacts.get(i).getCity(), i, 1);
+            }
+
+            contactTableModel.setValueAt(null, j, 0);
+            contactTableModel.setValueAt(null, j, 1);
         }
     }
 
@@ -122,8 +129,9 @@ public class GroupsView extends JPanel {
         return groupsTable.getSelectedRow();
     }
 
-    // public void addButtonsActionListeners(ActionListener listener) {
-    // }
+    public void addButtonsActionListeners(ActionListener listener) {
+        addButton.addActionListener(listener);
+    }
 
     public void addListSelectionListener(ListSelectionListener listener) {
         groupsTable.getSelectionModel().addListSelectionListener(listener);

@@ -34,13 +34,25 @@ public class GroupsController implements ActionListener, ListSelectionListener {
             System.out.print(e.getLocalizedMessage());
         }
 
+        groupsView.addButtonsActionListeners(this);
         groupsView.addListSelectionListener(this);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        
+    public void actionPerformed(ActionEvent event) {
+        Object source = event.getSource();
+        if (source instanceof JButton) {
+            JButton button = (JButton) source;
+            if (button.getText() == "Add new Group") {
+                appFrame.getContentPane().removeAll();
+
+                AddGroupView addGroupView = new AddGroupView();
+                new AddGroupController(appFrame, addGroupView);
+
+                appFrame.getContentPane().add(addGroupView);
+                appFrame.setVisible(true);
+            }
+        }
     }
 
     @Override
