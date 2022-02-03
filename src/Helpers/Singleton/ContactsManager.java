@@ -1,7 +1,9 @@
-package Helpers;
+package Helpers.Singleton;
 
 import java.util.*;
 import com.google.gson.*;
+
+import Helpers.Constants;
 
 import java.io.*;
 import Models.*;

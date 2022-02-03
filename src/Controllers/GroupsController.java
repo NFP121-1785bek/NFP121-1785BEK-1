@@ -8,7 +8,7 @@ import javax.swing.event.ListSelectionListener;
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
-import Helpers.ContactsManager;
+import Helpers.Singleton.ContactsManager;
 import Models.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;

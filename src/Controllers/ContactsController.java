@@ -2,11 +2,17 @@ package Controllers;
 
 import java.util.ArrayList;
 import javax.swing.JButton;
+
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
+
 import java.awt.event.*;
+import java.io.FileNotFoundException;
 
 import Models.Contact;
 import Views.*;
 import Helpers.*;
+import Helpers.Singleton.ContactsManager;
 import Helpers.StategySorting.SortCityStrategy;
 import Helpers.StategySorting.SortContext;
 import Helpers.StategySorting.SortFirstNameStrategy;
@@ -112,7 +118,29 @@ public class ContactsController implements ActionListener {
                 SortContext context = new SortContext(new SortCityStrategy());
                 this.contacts = context.arrange(contacts);
                 updateView();
+            } else if (button.getText() == "Search") {
+                search(contactsView.getSearchText());
+                updateView();
+            } else if (button.getText() == "Clear") {
+                try {
+                    this.contacts = ContactsManager.sharedInstance().getContactsResponse().getContacts();
+                    updateView();
+                } catch (Exception e) {
+                    System.out.print(e);
+                } 
             }
         }
+    }
+
+    public void search(String term) {
+        ArrayList<Contact> filteredContacts = new ArrayList<>();
+
+        for(Contact contact: contacts) {
+            if (contact.getFirstName().toLowerCase().contains(term.toLowerCase()) || contact.getLastName().toLowerCase().contains(term.toLowerCase()) || contact.getCity().toLowerCase().contains(term.toLowerCase())) {
+                filteredContacts.add(contact);
+            }
+        }
+
+        this.contacts = filteredContacts;
     }
 }

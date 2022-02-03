@@ -3,7 +3,7 @@ package Controllers;
 import java.util.ArrayList;
 import javax.swing.JButton;
 
-import Helpers.ContactsManager;
+import Helpers.Singleton.ContactsManager;
 import Models.*;
 import java.awt.event.*;
 import Views.*;

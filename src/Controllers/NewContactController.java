@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
-import Helpers.ContactsManager;
+import Helpers.Singleton.ContactsManager;
 import Models.*;
 import java.awt.event.*;
 import Views.*;

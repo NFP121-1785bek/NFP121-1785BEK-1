@@ -9,7 +9,8 @@ public class ContactsView extends JPanel {
     private JPanel mainPanel;
     private DefaultTableModel tableModel;
     private JTable contactsTable;
-    private JButton viewButton, updateButton, deleteButton, sortFNameButton, sortLNameButton, sortCityButton, addNewButton, groupsButton;
+    private JButton viewButton, updateButton, deleteButton, sortFNameButton, sortLNameButton, sortCityButton, addNewButton, groupsButton, searchButton, clearButton;
+    private JTextField searchTextField;
 
     public ContactsView() {
         mainPanel = new JPanel();
@@ -69,12 +70,18 @@ public class ContactsView extends JPanel {
         mainPanel.add(displayPanel, BorderLayout.LINE_END);
 
         JPanel searchPanel = new JPanel();
-        JLabel searchLabel = new JLabel();
-        searchLabel.setText("Search");
 
-        JTextField searchTextField = new JTextField(10);
-        searchPanel.add(searchLabel);
+        searchButton = new JButton();
+        searchButton.setText("Search");
+        searchPanel.add(searchButton);
+
+        searchTextField = new JTextField(10);
         searchPanel.add(searchTextField);
+
+        clearButton = new JButton();
+        clearButton.setText("Clear");
+        searchPanel.add(clearButton);
+
         displayPanel.add(searchPanel, BorderLayout.NORTH);
 
         tableModel = new DefaultTableModel(0, 1) {
@@ -117,6 +124,10 @@ public class ContactsView extends JPanel {
         return contactsTable.getSelectedRow();
     }
 
+    public String getSearchText() {
+        return this.searchTextField.getText();
+    }
+
     public void addButtonsActionListeners(ActionListener listener) {
         viewButton.addActionListener(listener);
         updateButton.addActionListener(listener);
@@ -126,6 +137,8 @@ public class ContactsView extends JPanel {
         sortCityButton.addActionListener(listener);
         addNewButton.addActionListener(listener);
         groupsButton.addActionListener(listener);
+        searchButton.addActionListener(listener);
+        clearButton.addActionListener(listener);
     }
 }
 
