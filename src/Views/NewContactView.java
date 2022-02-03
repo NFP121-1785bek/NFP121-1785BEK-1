@@ -15,6 +15,7 @@ public class NewContactView extends JPanel {
     public CheckBoxList cbList;
     private JButton saveButton, cancelButton;
     public JTextField nameTextField, lnameTextField, cityTextField;
+    private JTable phoneNbTable;
 
     public NewContactView() {
         mainPanel = new JPanel();
@@ -98,7 +99,7 @@ public class NewContactView extends JPanel {
         String head[] = {"Region code", "Phone number"};       
         tableModel.setColumnIdentifiers(head);
 
-        JTable phoneNbTable = new JTable(tableModel);
+        phoneNbTable = new JTable(tableModel);
         phoneNbTable.setShowGrid(true);
         phoneNbTable.setGridColor(Color.black);
         contactsTablePanel.add(phoneNbTable, BorderLayout.CENTER);
@@ -149,5 +150,9 @@ public class NewContactView extends JPanel {
     public void addButtonsActionListeners(ActionListener listener) {
         saveButton.addActionListener(listener);
         cancelButton.addActionListener(listener);
+    }
+
+    public void endEditing() {
+        phoneNbTable.getCellEditor().stopCellEditing();
     }
 }

@@ -5,8 +5,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.ArrayList;
-
-import Helpers.*;
 import Models.*;
 
 public class AddGroupView extends JPanel {

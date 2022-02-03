@@ -40,6 +40,8 @@ public class NewContactController implements ActionListener {
         if (source instanceof JButton) {
             JButton button = (JButton) source;
             if (button.getText() == "Save") {
+                this.newContactView.endEditing();
+
                 String name = newContactView.nameTextField.getText();
                 String lname = newContactView.lnameTextField.getText();
                 String city = newContactView.cityTextField.getText();
@@ -51,7 +53,9 @@ public class NewContactController implements ActionListener {
                     String number = (String)newContactView.tableModel.getValueAt(i, 1);
 
                     if (region != null || number != null) {
-                        phoneNumbers.add(new PhoneNumber(region, number));
+                        if (!region.isEmpty() || !number.isEmpty()) {
+                            phoneNumbers.add(new PhoneNumber(region, number));
+                        }
                     }
                 }
 

@@ -2,7 +2,6 @@ package Controllers;
 
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 
 import Helpers.ContactsManager;
 import Models.*;

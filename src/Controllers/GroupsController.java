@@ -2,7 +2,6 @@ package Controllers;
 
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 

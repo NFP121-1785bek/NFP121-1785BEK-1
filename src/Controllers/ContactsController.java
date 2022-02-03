@@ -1,16 +1,16 @@
 package Controllers;
 
 import java.util.ArrayList;
-
 import javax.swing.JButton;
-import javax.swing.*;
-
-import java.awt.Dimension;
 import java.awt.event.*;
 
 import Models.Contact;
 import Views.*;
 import Helpers.*;
+import Helpers.StategySorting.SortCityStrategy;
+import Helpers.StategySorting.SortContext;
+import Helpers.StategySorting.SortFirstNameStrategy;
+import Helpers.StategySorting.SortLastNameStrategy;
 
 public class ContactsController implements ActionListener {
 
@@ -33,6 +33,7 @@ public class ContactsController implements ActionListener {
 
     public void updateView() {
         if (this.contacts == null) { return; }
+        contactsView.clearTable();
 
         for (Contact contactModel : contacts) {
             Object[] row = {contactModel.getFirstName() + " " + contactModel.getLastName() + " - " + contactModel.getCity()};
@@ -99,6 +100,18 @@ public class ContactsController implements ActionListener {
 
                 appFrame.getContentPane().add(groupsView);
                 appFrame.setVisible(true);
+            } else if (button.getText() == "Sort by first name") {
+                SortContext context = new SortContext(new SortFirstNameStrategy());
+                this.contacts = context.arrange(contacts);
+                updateView();
+            } else if (button.getText() == "Sort by last name") {
+                SortContext context = new SortContext(new SortLastNameStrategy());
+                this.contacts = context.arrange(contacts);
+                updateView();
+            } else if (button.getText() == "Sort by City") {
+                SortContext context = new SortContext(new SortCityStrategy());
+                this.contacts = context.arrange(contacts);
+                updateView();
             }
         }
     }

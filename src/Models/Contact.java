@@ -2,7 +2,7 @@ package Models;
 
 import java.util.*;
 
-public class Contact {
+public class Contact implements Comparable<Contact> {
     private String id;
     private String first_name;
     private String last_name;
@@ -69,5 +69,34 @@ public class Contact {
 
     public void removeGroup(String groupID) {
         groups.remove(groupID);
+    }
+
+    @Override
+    public int compareTo(Contact o) {
+        return Comparators.fname.compare(this, o);
+    }
+
+    public static class Comparators {
+
+        public static Comparator<Contact> fname = new Comparator<Contact>() {
+            @Override
+            public int compare(Contact o1, Contact o2) {
+                return o1.first_name.compareTo(o2.first_name);
+            }
+        };
+
+        public static Comparator<Contact> lname = new Comparator<Contact>() {
+            @Override
+            public int compare(Contact o1, Contact o2) {
+                return o1.last_name.compareTo(o2.last_name);
+            }
+        };
+        
+        public static Comparator<Contact> city = new Comparator<Contact>() {
+            @Override
+            public int compare(Contact o1, Contact o2) {
+                return o1.city.compareTo(o2.city);
+            }
+        };
     }
 }

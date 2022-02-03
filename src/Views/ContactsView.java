@@ -109,6 +109,10 @@ public class ContactsView extends JPanel {
         tableModel.addRow(row);
     }
 
+    public void clearTable() {
+        tableModel.setRowCount(0);
+    }
+
     public int getSelectedRow() {
         return contactsTable.getSelectedRow();
     }

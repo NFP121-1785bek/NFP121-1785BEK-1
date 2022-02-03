@@ -5,14 +5,52 @@
       "first_name": "Julien",
       "last_name": "Test",
       "city": "Beirut",
-      "groups": [],
+      "groups": [
+        "9a50e2da-85d9-4dd5-9f4b-dfe19fda91ff"
+      ],
       "phone_numbers": [
         {
           "region": "961",
           "number": "71568887"
-        },
+        }
+      ]
+    },
+    {
+      "id": "b4f89238-5768-4f31-a1f5-ac0d5df8d1a4",
+      "first_name": "Noel",
+      "last_name": "Ashkar",
+      "city": "Broummana",
+      "groups": [],
+      "phone_numbers": [
         {
-          "number": ""
+          "region": "961",
+          "number": "70003635"
+        }
+      ]
+    },
+    {
+      "id": "ff8a63c4-506d-4480-a3db-60c09db0e7a6",
+      "first_name": "Amar",
+      "last_name": "Chidiac",
+      "city": "Aramoun",
+      "groups": [],
+      "phone_numbers": [
+        {
+          "region": "961",
+          "number": "71093612"
+        }
+      ]
+    },
+    {
+      "id": "d616c67e-abf3-44fc-8a12-348c26a650e9",
+      "first_name": "Nadia",
+      "last_name": "Achkar",
+      "city": "Broummana",
+      "groups": [],
+      "phone_numbers": [
+        {
+          "region": "961",
+          "number": "3239251"
         }
       ]
     }
