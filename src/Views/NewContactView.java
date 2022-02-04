@@ -151,8 +151,4 @@ public class NewContactView extends JPanel {
         saveButton.addActionListener(listener);
         cancelButton.addActionListener(listener);
     }
-
-    public void endEditing() {
-        phoneNbTable.getCellEditor().stopCellEditing();
-    }
 }
