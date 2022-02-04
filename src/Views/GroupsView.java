@@ -3,6 +3,10 @@ package Views;
 import javax.swing.*;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.*;
+
+import Helpers.State.Views.CustomButton;
+import Helpers.State.Views.CustomLabel;
+
 import java.awt.event.*;
 
 import java.awt.*;
@@ -14,7 +18,7 @@ public class GroupsView extends JPanel {
     private JPanel mainPanel;
     public DefaultTableModel tableModel, contactTableModel;
     private JTable groupsTable, contactsTable;
-    private JButton addButton, backButton, deleteButton, updateButton;
+    private CustomButton addButton, backButton, deleteButton, updateButton;
 
     public GroupsView() {
         mainPanel = new JPanel();
@@ -23,8 +27,8 @@ public class GroupsView extends JPanel {
         mainPanel.setBackground(Color.red);
 
         JPanel titlePanel = new JPanel();
-        JLabel titleLabel = new JLabel();
-        titleLabel.setText("Gestion des contacts");
+        CustomLabel titleLabel = new CustomLabel();
+        titleLabel.setLocalizedText("manage_contacts");
         titleLabel.setForeground(Color.blue);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setFont(new Font("Courier", Font.BOLD,20)); 
@@ -36,19 +40,19 @@ public class GroupsView extends JPanel {
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new GridLayout(5, 0));
 
-        JLabel groupsLabel = new JLabel();
-        groupsLabel.setText("Groups");
+        CustomLabel groupsLabel = new CustomLabel();
+        groupsLabel.setLocalizedText("groups");
         groupsLabel.setForeground(Color.red);
         groupsLabel.setHorizontalAlignment(JLabel.LEFT);
         groupsLabel.setFont(new Font("Courier", Font.BOLD,20)); 
         menuPanel.add(groupsLabel);
 
-        addButton = new JButton();
-        addButton.setText("Add new Group");
+        addButton = new CustomButton();
+        addButton.setLocalizedText("add_group");
         menuPanel.add(addButton);
 
-        backButton = new JButton();
-        backButton.setText("Back");
+        backButton = new CustomButton();
+        backButton.setLocalizedText("back");
         menuPanel.add(backButton);
 
         leftanel.add(menuPanel);
@@ -62,8 +66,8 @@ public class GroupsView extends JPanel {
         displayPanel.setLayout(new BorderLayout());
         mainPanel.add(displayPanel, BorderLayout.LINE_END);
 
-        JLabel listLabel = new JLabel();
-        listLabel.setText("List of groups");
+        CustomLabel listLabel = new CustomLabel();
+        listLabel.setLocalizedText("list_of_groups");
         listLabel.setHorizontalAlignment(JLabel.CENTER);
 
         displayPanel.add(listLabel, BorderLayout.NORTH);
@@ -96,12 +100,12 @@ public class GroupsView extends JPanel {
         displayPanel.add(tablesPanel, BorderLayout.CENTER);
 
         JPanel buttonsPanel = new JPanel();
-        updateButton = new JButton();
-        updateButton.setText("Update Group");
+        updateButton = new CustomButton();
+        updateButton.setLocalizedText("update_group");
         buttonsPanel.add(updateButton);
 
-        deleteButton = new JButton();
-        deleteButton.setText("Delete");
+        deleteButton = new CustomButton();
+        deleteButton.setLocalizedText("delete");
         buttonsPanel.add(deleteButton);
 
         displayPanel.add(buttonsPanel, BorderLayout.SOUTH);

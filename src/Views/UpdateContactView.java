@@ -7,6 +7,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import Helpers.*;
+import Helpers.State.Views.CustomButton;
+import Helpers.State.Views.CustomLabel;
 import Models.PhoneNumber;
 
 public class UpdateContactView extends JPanel {
@@ -14,7 +16,7 @@ public class UpdateContactView extends JPanel {
     private JPanel mainPanel;
     public DefaultTableModel tableModel;
     public CheckBoxList cbList;
-    private JButton saveButton, cancelButton;
+    private CustomButton saveButton, cancelButton;
     public JTextField nameTextField, lnameTextField, cityTextField;
 
     public UpdateContactView() {
@@ -22,8 +24,8 @@ public class UpdateContactView extends JPanel {
         mainPanel.setLayout(new BorderLayout());
 
         JPanel titlePanel = new JPanel();
-        JLabel titleLabel = new JLabel();
-        titleLabel.setText("Gestion des contacts");
+        CustomLabel titleLabel = new CustomLabel();
+        titleLabel.setLocalizedText("manage_contacts");
         titleLabel.setForeground(Color.blue);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setFont(new Font("Courier", Font.BOLD,20)); 
@@ -35,8 +37,8 @@ public class UpdateContactView extends JPanel {
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new GridLayout(5, 0));
 
-        JLabel newContactLabel = new JLabel();
-        newContactLabel.setText("Update Contact");
+        CustomLabel newContactLabel = new CustomLabel();
+        newContactLabel.setLocalizedText("update_contact");
         newContactLabel.setForeground(Color.red);
         newContactLabel.setHorizontalAlignment(JLabel.LEFT);
         newContactLabel.setFont(new Font("Courier", Font.BOLD,20)); 
@@ -55,24 +57,24 @@ public class UpdateContactView extends JPanel {
         textPanel.setLayout(new GridLayout(3, 1));
 
         JPanel namePanel = new JPanel();
-        JLabel nameLabel = new JLabel();
-        nameLabel.setText("First name");
+        CustomLabel nameLabel = new CustomLabel();
+        nameLabel.setLocalizedText("first_name");
         
         nameTextField = new JTextField(15);
         namePanel.add(nameLabel);
         namePanel.add(nameTextField);
 
         JPanel lnamePanel = new JPanel();
-        JLabel lnameLabel = new JLabel();
-        lnameLabel.setText("Last name");
+        CustomLabel lnameLabel = new CustomLabel();
+        lnameLabel.setLocalizedText("last_name");
         
         lnameTextField = new JTextField(15);
         lnamePanel.add(lnameLabel);
         lnamePanel.add(lnameTextField);
 
         JPanel cityPanel = new JPanel();
-        JLabel cityLabel = new JLabel();
-        cityLabel.setText("City");
+        CustomLabel cityLabel = new CustomLabel();
+        cityLabel.setLocalizedText("city");
 
         cityTextField = new JTextField(20);
         cityPanel.add(cityLabel);
@@ -90,8 +92,8 @@ public class UpdateContactView extends JPanel {
         JPanel contactsTablePanel = new JPanel();
         contactsTablePanel.setLayout(new BorderLayout());
 
-        JLabel phoneNbLbl = new JLabel();
-        phoneNbLbl.setText("Phone Numbers");
+        CustomLabel phoneNbLbl = new CustomLabel();
+        phoneNbLbl.setLocalizedText("phone_numbers");
         phoneNbLbl.setHorizontalAlignment(JLabel.CENTER);
         contactsTablePanel.add(phoneNbLbl, BorderLayout.NORTH);
 
@@ -108,8 +110,8 @@ public class UpdateContactView extends JPanel {
 
         JPanel checkBoxListPanel = new JPanel();
         checkBoxListPanel.setLayout(new BorderLayout());
-        JLabel addToGroupsLbl = new JLabel();
-        addToGroupsLbl.setText("Add contact to Groups");
+        CustomLabel addToGroupsLbl = new CustomLabel();
+        addToGroupsLbl.setLocalizedText("add_contact_to_groups");
         addToGroupsLbl.setHorizontalAlignment(JLabel.CENTER);
         checkBoxListPanel.add(addToGroupsLbl, BorderLayout.NORTH);
 
@@ -122,12 +124,12 @@ public class UpdateContactView extends JPanel {
         mainPanel.add(displayPanel, BorderLayout.LINE_END);
 
         JPanel buttonsPanel = new JPanel();
-        saveButton = new JButton();
-        saveButton.setText("Save");
+        saveButton = new CustomButton();
+        saveButton.setLocalizedText("save");
         buttonsPanel.add(saveButton);
 
-        cancelButton = new JButton();
-        cancelButton.setText("Cancel");
+        cancelButton = new CustomButton();
+        cancelButton.setLocalizedText("cancel");
         buttonsPanel.add(cancelButton);
 
         displayPanel.add(buttonsPanel, BorderLayout.SOUTH);

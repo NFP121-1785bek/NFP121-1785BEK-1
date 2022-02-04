@@ -2,6 +2,9 @@ package Views;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import Helpers.State.Views.CustomButton;
+import Helpers.State.Views.CustomLabel;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -9,7 +12,7 @@ public class ContactsView extends JPanel {
     private JPanel mainPanel;
     private DefaultTableModel tableModel;
     private JTable contactsTable;
-    private JButton viewButton, updateButton, deleteButton, sortFNameButton, sortLNameButton, sortCityButton, addNewButton, groupsButton, searchButton, clearButton;
+    private CustomButton viewButton, updateButton, deleteButton, sortFNameButton, sortLNameButton, sortCityButton, addNewButton, groupsButton, searchButton, clearButton, languageButton;
     private JTextField searchTextField;
 
     public ContactsView() {
@@ -18,8 +21,8 @@ public class ContactsView extends JPanel {
         mainPanel.setBackground(Color.red);
 
         JPanel titlePanel = new JPanel();
-        JLabel titleLabel = new JLabel();
-        titleLabel.setText("Gestion des contacts");
+        CustomLabel titleLabel = new CustomLabel();
+        titleLabel.setLocalizedText("manage_contacts");
         titleLabel.setForeground(Color.blue);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setFont(new Font("Courier", Font.BOLD,20)); 
@@ -29,34 +32,38 @@ public class ContactsView extends JPanel {
         JPanel leftanel = new JPanel();
 
         JPanel menuPanel = new JPanel();
-        menuPanel.setLayout(new GridLayout(6, 0));
+        menuPanel.setLayout(new GridLayout(7, 0));
 
-        JLabel contactsLabel = new JLabel();
-        contactsLabel.setText("Contacts");
+        CustomLabel contactsLabel = new CustomLabel();
+        contactsLabel.setLocalizedText("contacts");
         contactsLabel.setForeground(Color.red);
         contactsLabel.setHorizontalAlignment(JLabel.LEFT);
         contactsLabel.setFont(new Font("Courier", Font.BOLD,20)); 
         menuPanel.add(contactsLabel);
 
-        sortFNameButton = new JButton();
-        sortFNameButton.setText("Sort by first name");
+        sortFNameButton = new CustomButton();
+        sortFNameButton.setLocalizedText("sort_first_name");
         menuPanel.add(sortFNameButton);
 
-        sortLNameButton = new JButton();
-        sortLNameButton.setText("Sort by last name");
+        sortLNameButton = new CustomButton();
+        sortLNameButton.setLocalizedText("sort_last_name");
         menuPanel.add(sortLNameButton);
 
-        sortCityButton = new JButton();
-        sortCityButton.setText("Sort by City");
+        sortCityButton = new CustomButton();
+        sortCityButton.setLocalizedText("sort_city");
         menuPanel.add(sortCityButton);
 
-        addNewButton = new JButton();
-        addNewButton.setText("Add new contact");
+        addNewButton = new CustomButton();
+        addNewButton.setLocalizedText("add_contact");
         menuPanel.add(addNewButton);
 
-        groupsButton = new JButton();
-        groupsButton.setText("Show groups");
+        groupsButton = new CustomButton();
+        groupsButton.setLocalizedText("show_groups");
         menuPanel.add(groupsButton);
+
+        languageButton = new CustomButton();
+        languageButton.setLocalizedText("switch_language");
+        menuPanel.add(languageButton);
 
         leftanel.add(menuPanel);
         mainPanel.add(leftanel, BorderLayout.LINE_START);
@@ -71,15 +78,15 @@ public class ContactsView extends JPanel {
 
         JPanel searchPanel = new JPanel();
 
-        searchButton = new JButton();
-        searchButton.setText("Search");
+        searchButton = new CustomButton();
+        searchButton.setLocalizedText("search");
         searchPanel.add(searchButton);
 
-        searchTextField = new JTextField(10);
+        searchTextField = new JTextField(7);
         searchPanel.add(searchTextField);
 
-        clearButton = new JButton();
-        clearButton.setText("Clear");
+        clearButton = new CustomButton();
+        clearButton.setLocalizedText("clear");
         searchPanel.add(clearButton);
 
         displayPanel.add(searchPanel, BorderLayout.NORTH);
@@ -94,16 +101,16 @@ public class ContactsView extends JPanel {
         displayPanel.add(contactsTable, BorderLayout.CENTER);
         
         JPanel buttonsPanel = new JPanel();
-        viewButton = new JButton();
-        viewButton.setText("View");
+        viewButton = new CustomButton();
+        viewButton.setLocalizedText("view");
         buttonsPanel.add(viewButton);
 
-        updateButton = new JButton();
-        updateButton.setText("Update");
+        updateButton = new CustomButton();
+        updateButton.setLocalizedText("update");
         buttonsPanel.add(updateButton);
 
-        deleteButton = new JButton();
-        deleteButton.setText("Delete");
+        deleteButton = new CustomButton();
+        deleteButton.setLocalizedText("delete");
         buttonsPanel.add(deleteButton);
 
         displayPanel.add(buttonsPanel, BorderLayout.SOUTH);
@@ -139,6 +146,7 @@ public class ContactsView extends JPanel {
         groupsButton.addActionListener(listener);
         searchButton.addActionListener(listener);
         clearButton.addActionListener(listener);
+        languageButton.addActionListener(listener);
     }
 }
 

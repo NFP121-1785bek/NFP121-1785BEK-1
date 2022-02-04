@@ -1,10 +1,10 @@
 package Controllers;
 
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 
 import Helpers.Singleton.ContactsManager;
+import Helpers.State.Views.CustomButton;
 import Models.*;
 import java.awt.event.*;
 import Views.*;
@@ -37,9 +37,9 @@ public class NewContactController implements ActionListener {
 
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
-        if (source instanceof JButton) {
-            JButton button = (JButton) source;
-            if (button.getText() == "Save") {
+        if (source instanceof CustomButton) {
+            CustomButton button = (CustomButton) source;
+            if (button.getButtonText() == "save") {
                 String name = newContactView.nameTextField.getText();
                 String lname = newContactView.lnameTextField.getText();
                 String city = newContactView.cityTextField.getText();
@@ -68,7 +68,7 @@ public class NewContactController implements ActionListener {
 
                 ContactsManager.sharedInstance().insertContact(name, lname, city, phoneNumbers, selectedGroups);
                 showContacts();
-            } else if (button.getText() == "Cancel") {
+            } else if (button.getButtonText() == "cancel") {
                 showContacts();
             }
         }

@@ -1,9 +1,9 @@
 package Controllers;
 
 import java.util.ArrayList;
-import javax.swing.JButton;
 
 import Helpers.Singleton.ContactsManager;
+import Helpers.State.Views.CustomButton;
 import Models.*;
 import java.awt.event.*;
 import Views.*;
@@ -31,9 +31,9 @@ public class AddGroupController implements ActionListener {
 
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
-        if (source instanceof JButton) {
-            JButton button = (JButton) source;
-            if (button.getText() == "Save Group") {
+        if (source instanceof CustomButton) {
+            CustomButton button = (CustomButton) source;
+            if (button.getButtonText() == "save_group") {
                 String name = addGroupView.nameTextField.getText();
                 String desc = addGroupView.descTextField.getText();
                 ArrayList<String> contacts = new ArrayList<>();
@@ -59,7 +59,7 @@ public class AddGroupController implements ActionListener {
 
                 appFrame.getContentPane().add(groupsView);
                 appFrame.setVisible(true);
-            } else if (button.getText() == "Cancel") {
+            } else if (button.getButtonText() == "cancel") {
                 appFrame.getContentPane().removeAll();
 
                 GroupsView groupsView = new GroupsView();

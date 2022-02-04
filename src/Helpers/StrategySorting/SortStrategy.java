@@ -1,4 +1,4 @@
-package Helpers.StategySorting;
+package Helpers.StrategySorting;
 
 import Models.*;
 import java.util.*;

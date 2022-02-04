@@ -2,6 +2,10 @@ package Views;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import Helpers.State.Views.CustomButton;
+import Helpers.State.Views.CustomLabel;
+
 import java.awt.event.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -12,7 +16,7 @@ public class AddGroupView extends JPanel {
     private JTable contactsTable;
     private JPanel mainPanel;
     public DefaultTableModel tableModel, contactsTableModel;
-    private JButton saveButton, cancelButton;
+    private CustomButton saveButton, cancelButton;
     public JTextField nameTextField, descTextField;
 
     public AddGroupView() {
@@ -22,8 +26,8 @@ public class AddGroupView extends JPanel {
         mainPanel.setBackground(Color.red);
 
         JPanel titlePanel = new JPanel();
-        JLabel titleLabel = new JLabel();
-        titleLabel.setText("Gestion des contacts");
+        CustomLabel titleLabel = new CustomLabel();
+        titleLabel.setLocalizedText("manage_contacts");
         titleLabel.setForeground(Color.blue);
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setFont(new Font("Courier", Font.BOLD,20)); 
@@ -35,8 +39,8 @@ public class AddGroupView extends JPanel {
         JPanel menuPanel = new JPanel();
         menuPanel.setLayout(new GridLayout(5, 0));
 
-        JLabel groupsLabel = new JLabel();
-        groupsLabel.setText("Add new Group");
+        CustomLabel groupsLabel = new CustomLabel();
+        groupsLabel.setLocalizedText("add_group");
         groupsLabel.setForeground(Color.red);
         groupsLabel.setHorizontalAlignment(JLabel.LEFT);
         groupsLabel.setFont(new Font("Courier", Font.BOLD,20)); 
@@ -57,15 +61,15 @@ public class AddGroupView extends JPanel {
         textPanel.setLayout(new GridLayout(2, 1));
 
         JPanel namePanel = new JPanel();
-        JLabel nameLabel = new JLabel();
-        nameLabel.setText("Group name");
+        CustomLabel nameLabel = new CustomLabel();
+        nameLabel.setLocalizedText("group_name");
         nameTextField = new JTextField(16);
         namePanel.add(nameLabel);
         namePanel.add(nameTextField);
 
         JPanel descriptionPanel = new JPanel();
-        JLabel descriptionLabel = new JLabel();
-        descriptionLabel.setText("Description");
+        CustomLabel descriptionLabel = new CustomLabel();
+        descriptionLabel.setLocalizedText("description");
         descTextField = new JTextField(16);
         descriptionPanel.add(descriptionLabel);
         descriptionPanel.add(descTextField);
@@ -103,12 +107,12 @@ public class AddGroupView extends JPanel {
         displayPanel.add(tablePanel, BorderLayout.CENTER);
 
         JPanel buttonsPanel = new JPanel();
-        saveButton = new JButton();
-        saveButton.setText("Save Group");
+        saveButton = new CustomButton();
+        saveButton.setLocalizedText("save_group");
         buttonsPanel.add(saveButton);
 
-        cancelButton = new JButton();
-        cancelButton.setText("Cancel");
+        cancelButton = new CustomButton();
+        cancelButton.setLocalizedText("cancel");
         buttonsPanel.add(cancelButton);
 
         displayPanel.add(buttonsPanel, BorderLayout.SOUTH);

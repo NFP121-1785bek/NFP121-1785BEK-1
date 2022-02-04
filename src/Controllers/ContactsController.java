@@ -1,22 +1,14 @@
 package Controllers;
 
 import java.util.ArrayList;
-import javax.swing.JButton;
-
-import com.google.gson.JsonIOException;
-import com.google.gson.JsonSyntaxException;
-
 import java.awt.event.*;
-import java.io.FileNotFoundException;
 
 import Models.Contact;
 import Views.*;
 import Helpers.*;
 import Helpers.Singleton.ContactsManager;
-import Helpers.StategySorting.SortCityStrategy;
-import Helpers.StategySorting.SortContext;
-import Helpers.StategySorting.SortFirstNameStrategy;
-import Helpers.StategySorting.SortLastNameStrategy;
+import Helpers.State.Views.CustomButton;
+import Helpers.StrategySorting.*;
 
 public class ContactsController implements ActionListener {
 
@@ -49,9 +41,9 @@ public class ContactsController implements ActionListener {
 
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
-        if(source instanceof JButton) {
-            JButton button = (JButton)source;
-            if(button.getText() == "View") {
+        if(source instanceof CustomButton) {
+            CustomButton button = (CustomButton)source;
+            if(button.getButtonText() == "view") {
                 if (contactsView.getSelectedRow() == -1) { return; }
 
                 Contact selectedContact = contacts.get(contactsView.getSelectedRow());
@@ -63,7 +55,7 @@ public class ContactsController implements ActionListener {
 
                 appFrame.getContentPane().add(updateContactView);
                 appFrame.setVisible(true);
-            } else if (button.getText() == "Update") {
+            } else if (button.getButtonText() == "update") {
                 if (contactsView.getSelectedRow() == -1) { return; }
 
                 Contact selectedContact = contacts.get(contactsView.getSelectedRow());
@@ -75,7 +67,7 @@ public class ContactsController implements ActionListener {
 
                 appFrame.getContentPane().add(updateContactView);
                 appFrame.setVisible(true);
-            } else if (button.getText() == "Delete") {
+            } else if (button.getButtonText() == "delete") {
 
                 if (contactsView.getSelectedRow() == -1) { return; }
 
@@ -90,7 +82,7 @@ public class ContactsController implements ActionListener {
 
                 appFrame.getContentPane().add(ctcsView);
                 appFrame.setVisible(true);
-            } else if (button.getText() == "Add new contact") {
+            } else if (button.getButtonText() == "add_contact") {
                 appFrame.getContentPane().removeAll();
 
                 NewContactView newContactView = new NewContactView();
@@ -98,7 +90,7 @@ public class ContactsController implements ActionListener {
 
                 appFrame.getContentPane().add(newContactView);
                 appFrame.setVisible(true);
-            } else if (button.getText() == "Show groups") {
+            } else if (button.getButtonText() == "show_groups") {
                 appFrame.getContentPane().removeAll();
 
                 GroupsView groupsView = new GroupsView();
@@ -106,28 +98,45 @@ public class ContactsController implements ActionListener {
 
                 appFrame.getContentPane().add(groupsView);
                 appFrame.setVisible(true);
-            } else if (button.getText() == "Sort by first name") {
+            } else if (button.getButtonText() == "sort_first_name") {
                 SortContext context = new SortContext(new SortFirstNameStrategy());
                 this.contacts = context.arrange(contacts);
                 updateView();
-            } else if (button.getText() == "Sort by last name") {
+            } else if (button.getButtonText() == "sort_last_name") {
                 SortContext context = new SortContext(new SortLastNameStrategy());
                 this.contacts = context.arrange(contacts);
                 updateView();
-            } else if (button.getText() == "Sort by City") {
+            } else if (button.getButtonText() == "sort_city") {
                 SortContext context = new SortContext(new SortCityStrategy());
                 this.contacts = context.arrange(contacts);
                 updateView();
-            } else if (button.getText() == "Search") {
+            } else if (button.getButtonText() == "search") {
                 search(contactsView.getSearchText());
                 updateView();
-            } else if (button.getText() == "Clear") {
+            } else if (button.getButtonText() == "clear") {
                 try {
                     this.contacts = ContactsManager.sharedInstance().getContactsResponse().getContacts();
                     updateView();
                 } catch (Exception e) {
                     System.out.print(e);
                 } 
+            } else if (button.getButtonText() == "switch_language") {
+                if (AppController.appLanguage == AppLanguage.ENGLISH) {
+                    AppController.appLanguage = AppLanguage.FRENCH;
+                } else if (AppController.appLanguage == AppLanguage.FRENCH) {
+                    AppController.appLanguage = AppLanguage.ENGLISH;
+                }
+
+                appFrame.getContentPane().removeAll();
+
+                ContactsView ctcsView = new ContactsView();
+        
+                appFrame.getContentPane().add(ctcsView);
+        
+                ContactsController contactsController = new ContactsController(appFrame, ctcsView);
+                contactsController.updateView();
+                appFrame.getContentPane().add(ctcsView);
+                appFrame.setVisible(true);
             }
         }
     }

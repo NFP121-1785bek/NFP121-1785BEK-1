@@ -1,7 +1,6 @@
 package Controllers;
 
 import java.util.ArrayList;
-import javax.swing.JButton;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -9,6 +8,7 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
 
 import Helpers.Singleton.ContactsManager;
+import Helpers.State.Views.CustomButton;
 import Models.*;
 import java.awt.event.*;
 import java.io.FileNotFoundException;
@@ -41,9 +41,9 @@ public class GroupsController implements ActionListener, ListSelectionListener {
     @Override
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
-        if (source instanceof JButton) {
-            JButton button = (JButton) source;
-            if (button.getText() == "Add new Group") {
+        if (source instanceof CustomButton) {
+            CustomButton button = (CustomButton) source;
+            if (button.getButtonText() == "add_group") {
                 appFrame.getContentPane().removeAll();
 
                 AddGroupView addGroupView = new AddGroupView();
@@ -51,7 +51,7 @@ public class GroupsController implements ActionListener, ListSelectionListener {
 
                 appFrame.getContentPane().add(addGroupView);
                 appFrame.setVisible(true);
-            } else if (button.getText() == "Back") {
+            } else if (button.getButtonText() == "back") {
                 appFrame.getContentPane().removeAll();
 
                 ContactsView ctcsView = new ContactsView();
@@ -61,7 +61,7 @@ public class GroupsController implements ActionListener, ListSelectionListener {
                 ContactsController contactsController = new ContactsController(appFrame, ctcsView);
                 contactsController.updateView();
                 appFrame.setVisible(true);
-            } else if (button.getText() == "Update Group") {
+            } else if (button.getButtonText() == "update_group") {
                 if (selectedGroup == null) { return; }
 
                 appFrame.getContentPane().removeAll();
@@ -71,7 +71,7 @@ public class GroupsController implements ActionListener, ListSelectionListener {
 
                 appFrame.getContentPane().add(updateGroupView);
                 appFrame.setVisible(true);
-            } else if (button.getText() == "Delete") {
+            } else if (button.getButtonText() == "delete") {
                 if (selectedGroup == null) { return; }
 
                 ContactsManager.sharedInstance().deleteGroup(selectedGroup);
