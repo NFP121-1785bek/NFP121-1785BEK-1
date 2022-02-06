@@ -9,7 +9,6 @@ import Helpers.*;
 
 public class CustomLabel extends JLabel {
     private LanguageState state = new EnglishState();
-    private String labelText;
 
     public CustomLabel() {
         if (AppController.appLanguage == AppLanguage.ENGLISH) {
@@ -20,7 +19,6 @@ public class CustomLabel extends JLabel {
     }
 
     public void setLocalizedText(String text) {
-        this.labelText = text;
         this.state.setLabelText(this, text);
     }
 }
